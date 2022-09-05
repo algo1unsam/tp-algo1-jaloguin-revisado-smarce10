@@ -22,3 +22,13 @@ test "Macaria deja de usar el elemento menos efectivo" {
 	macaria.dejarDeUsarMenosEfectivo()
 	assert.notThat(macaria.disfraces().contains(barba))
 }
+
+test "macaria usa la mascara de un presidente con 10 propuestas"{
+	macaria.disfrazar(mascaraPolitico)
+	assert.equals(20, macaria.capacidadSusto())
+}
+
+test "Hacen enojar a macaria y se incrementa su capacidad de susto"{
+	macaria.hacerEnojar()
+	assert.equals(11, macaria.capacidadSusto())
+}

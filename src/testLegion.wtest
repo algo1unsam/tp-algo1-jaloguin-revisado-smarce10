@@ -19,7 +19,13 @@ test "Los caramelos son la suma de los de sus integrantes" {
 	macaria.recibirCaramelos(8) 
 	pancracio.recibirCaramelos(4)
 	legionDelTerror.agregarIntegrantes([pedro,macaria,pancracio])
-	assert.equals(10,legionDelTerror.caramelos())
+	// aca en equals estaba "10" en el primer argumento, pero haciendo las cuentas
+	// es imposible que de 10, tiene que dar 13
+	// pedro -> se queda con los 3 caramelos
+	// pancracio -> se queda con los 4
+	// macaria -> pierde 1/4 de los que obtiene, osea, (8 - (8/4) = 6) 
+	// 3 + 4 + 6 = 13
+	assert.equals(13,legionDelTerror.caramelos())
 }
 
 
@@ -52,7 +58,11 @@ test "Los 2 con mas caramelos" {
 	macaria.recibirCaramelos(10)
 	pedro.recibirCaramelos(10)
 	barrio.chicos( [pedro,macaria,pancracio])
-	assert.equals([pancracio,macaria],barrio.chicosConMasCaramelos(2))
+	// aca estaba "[pancracio, macaria]" pero no puede ser
+	// xq si a los 3 les damos 10 caramelos, el unico objeto que pierde
+	// es macaria, por lo tanto tiene que estar ultima en el array
+	// los dos primeros siempre deberian ser pancracio y pedro o viceversa
+	assert.equals([pancracio,pedro],barrio.chicosConMasCaramelos(2))
 }
 
 test "Ninguno muy asustador" {
@@ -72,8 +82,8 @@ test "Norma sin repetidos" {
 }
 
 test "Norma sin repetidos no hace nada si un chico tiene muchas veces el mismo elemento" {
-	pancracio.disfrazar(barba)
-	pancracio.disfrazar(barba)
+	macaria.disfrazar(barba)
+	macaria.disfrazar(barba)
 	pedro.disfrazar(mascaraDracula)
 	pedro.disfrazar(mascaraFrankenstein)
 	legionDelTerror.agregarIntegrantes([pedro,macaria,pancracio])
